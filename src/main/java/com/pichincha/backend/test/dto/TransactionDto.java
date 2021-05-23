@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 @Getter
 public class TransactionDto {
 
-	private final Long id;
+    private final Long id;
 
-	private final String comment;
+    private final String comment;
 
-	private final String type;
+    private final String type;
 
-	private final LocalDateTime creationDate;
+    private final LocalDateTime creationDate;
 
 }

@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @Getter
 public class AccountDto {
 
-	private final String number;
+    private final String number;
 
-	private final String type;
+    private final String type;
 
-	private final LocalDateTime creationDate;
+    private final LocalDateTime creationDate;
 
 }

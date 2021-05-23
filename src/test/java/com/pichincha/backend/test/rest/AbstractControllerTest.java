@@ -14,15 +14,15 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest
 public abstract class AbstractControllerTest {
 
-	@Autowired
-	protected MockMvc mockMvc;
+    @Autowired
+    protected MockMvc mockMvc;
 
-	@MockBean
-	protected AccountService accountService;
+    @MockBean
+    protected AccountService accountService;
 
-	@Before
-	public void setUp() {
-		Mockito.reset(accountService);
-	}
+    @Before
+    public void setUp() {
+        Mockito.reset(accountService);
+    }
 
 }
