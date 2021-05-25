@@ -29,10 +29,10 @@ public class TransactionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Long addTransaction(@PathVariable Long accountId, @RequestBody NewTransactionDto newTransactionDto) {
-        if (!accountId.equals(newTransactionDto.getAccountId())) {
+        if (!accountId.equals(newTransactionDto.getAccountId()) && newTransactionDto.getAccountId() != null) {
             log.warn("Account ID ingresado en Path es distinto al ingresado en el Body, se usará el del Path.");
-            newTransactionDto.setAccountId(accountId);
         }
+        newTransactionDto.setAccountId(accountId);
         return tService.addTransaction(newTransactionDto);
     }
 
