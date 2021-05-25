@@ -4,12 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class NewTransactionDto {
 
+    private final String type;
+    
+    private final String comment;
+
+    @Setter
     private Long accountId;
 
-    private String type;
+    public NewTransactionDto(String type, String comment) {
+        this.type = type;
+        this.comment = comment;
+    }
 
-    private String comment;
 }

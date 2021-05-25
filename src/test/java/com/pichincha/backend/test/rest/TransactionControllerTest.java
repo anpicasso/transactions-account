@@ -30,7 +30,7 @@ public class TransactionControllerTest extends AbstractControllerTest {
         transactions.add(new TransactionDto(2L, "July payment", "Credit card payment", creationDate));
 
         // when
-        when(accountService.getTransactionsForAccount(1L)).thenReturn(transactions);
+        when(transactionService.getTransactionsForAccount(1L)).thenReturn(transactions);
 
         // then
         mockMvc.perform(get("/accounts/1/transactions").accept(APPLICATION_JSON))
@@ -48,10 +48,10 @@ public class TransactionControllerTest extends AbstractControllerTest {
 
         // given
         String transactionBody = "{\"comment\":\"Test comment\", \"type\":\"Credit card payment\"}";
-        NewTransactionDto newTransaction = createTransaction("Test comment", "Credit card payment");
+        NewTransactionDto newTransaction = new NewTransactionDto("Credit card payment", "Test comment");
 
         // when
-        when(accountService.addTransaction(newTransaction)).thenReturn(1L);
+        when(transactionService.addTransaction(newTransaction)).thenReturn(1L);
 
         // then
         mockMvc.perform(post("/accounts/1/transactions")
@@ -59,13 +59,6 @@ public class TransactionControllerTest extends AbstractControllerTest {
                 .contentType(APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
-    }
-
-    private NewTransactionDto createTransaction(String comment, String type) {
-        NewTransactionDto newTransaction = new NewTransactionDto();
-        newTransaction.setComment(comment);
-        newTransaction.setType(type);
-        return newTransaction;
     }
 
 }

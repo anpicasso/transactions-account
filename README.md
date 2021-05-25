@@ -1,3 +1,5 @@
+[![Sonarqube result](https://i.imgur.com/Ecedyc9.png)](Sonarqube result)
+
 Backend test
 =
 Este proyecto es una aplicación simple REST. Utiliza Spring Boot, Spring Data JPA, Lombok y otros utilitarios.
