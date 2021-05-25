@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -26,8 +23,9 @@ public class Transaction {
     @Column(length = 70)
     private String type;
 
-    @Column(nullable = false, updatable = false)
-    private Long accountId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false, updatable = false)
+    private Account account;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime creationDate;

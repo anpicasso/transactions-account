@@ -7,7 +7,7 @@ import lombok.Setter;
 public class NewTransactionDto {
 
     private final String type;
-    
+
     private final String comment;
 
     @Setter

@@ -27,6 +27,7 @@ public abstract class AbstractControllerTest {
     @Before
     public void setUp() {
         Mockito.reset(accountService);
+        Mockito.reset(transactionService);
     }
 
 }

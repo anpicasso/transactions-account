@@ -2,6 +2,7 @@ package com.pichincha.backend.test.rest;
 
 import com.pichincha.backend.test.dto.NewTransactionDto;
 import com.pichincha.backend.test.dto.TransactionDto;
+import com.pichincha.backend.test.exception.ResourceNotFoundException;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -59,6 +61,23 @@ public class TransactionControllerTest extends AbstractControllerTest {
                 .contentType(APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void shouldNotAddTransactionForNonExistingAccount() throws Exception {
+
+        // given
+        String transactionBody = "{\"comment\":\"Test comment\", \"type\":\"Credit card payment\"}";
+
+        // when
+        when(transactionService.addTransaction(any(NewTransactionDto.class))).thenThrow(new ResourceNotFoundException("AccountId " + 2 + " not found"));
+
+        // then
+        mockMvc.perform(post("/accounts/2/transactions")
+                .content(transactionBody)
+                .contentType(APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 
 }
