@@ -1,4 +1,4 @@
-[![Sonarqube result](https://i.imgur.com/Ecedyc9.png)](Sonarqube result)
+![Sonarqube result](https://i.imgur.com/Ecedyc9.png)
 
 Backend test
 =
